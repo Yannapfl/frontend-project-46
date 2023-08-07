@@ -1,5 +1,6 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Yannapfl/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/Yannapfl/frontend-project-46/actions)
+<a href="https://codeclimate.com/github/Yannapfl/frontend-project-46/maintainability"><img src="https://api.codeclimate.com/v1/badges/139a07af565c32f375a0/maintainability" /></a>
 
 <h1>Hi, there! I'm Yana</h1>
 <h2>It's my second project on <a href="https://ru.hexlet.io/" target="_blank">Hexlet</a></h2>
