@@ -1,7 +1,7 @@
 {
-    "name": "file2",
+    "name": "second",
     "format": "json",
     "weigth": 50,
     "main": "bin",
-    "teste": true 
+    "test": true 
 }
