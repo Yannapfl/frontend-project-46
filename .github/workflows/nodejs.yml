@@ -10,11 +10,9 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [18.x]
-
     steps:
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
@@ -25,8 +23,8 @@ jobs:
       - run: make install
       - run: make lint
       - run: make test
-      - name: Test & publish code coverage
-        uses: paambaati/codeclimate-action@v4.0.0
+      - name: code coverage
+        uses: paambaati/codeclimate-action@v3.0.0
         env:
           CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
         with:
