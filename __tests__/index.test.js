@@ -11,8 +11,16 @@ const getFixturePath = (filename) => path.join(dirnamed, '..', '__fixtures__', f
 const readFile = (filepath) => readFileSync(getFixturePath(filepath), 'utf-8');
 
 test('gendiff', () => {
-  const filepath1 = getFixturePath('file1.json');
-  const filepath2 = getFixturePath('file2.json');
-  const result = readFile('expected_json.txt');
-  expect(gendiff(filepath1, filepath2)).toEqual(result);
+  const errorFile = getFixturePath('file2.txt');
+
+  const file1_json = getFixturePath('file1.json');
+  const file2_json = getFixturePath('file2.json');
+  const result_json = readFile('expected_json.txt');
+
+  const file1_yaml = getFixturePath('file1.yaml');
+  const file2_yaml = getFixturePath('file2.yaml');
+  const result_yaml = readFile('expected_yaml.txt');
+  expect(gendiff(file1_json, file2_json)).toEqual(result_json);
+  expect(gendiff(file1_yaml, file2_yaml)).toEqual(result_yaml);
+  expect(gendiff(file1_json, errorFile)).toEqual('Unknown format! txt');
 });

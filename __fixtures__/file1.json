@@ -3,5 +3,5 @@
     "format": "json",
     "timeout": 50,
     "proxy": 123.1234,
-    "version": 1.0    
+    "version": 1    
 }

@@ -1,0 +1,9 @@
+  format: yml
++ host: user
+- name: first
++ name: second
+- proxy: 123.1234
++ test: true
+- timeout: 100
+- version: 2
++ weigth: 100
