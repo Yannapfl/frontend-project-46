@@ -6,3 +6,9 @@ publish:
 
 lint:
 	npx eslint .
+
+test:
+	npm test
+
+npm ci:
+	install-deps
