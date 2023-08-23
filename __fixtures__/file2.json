@@ -1,6 +1,6 @@
 {
     "name": "second",
-    "format": "json",
+    "file": "identifical",
     "weigth": 50,
     "main": "bin",
     "test": true 

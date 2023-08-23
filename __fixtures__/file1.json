@@ -1,6 +1,6 @@
 {
     "name": "first",
-    "format": "json",
+    "file": "identifical",
     "timeout": 50,
     "proxy": 123.1234,
     "version": 1    

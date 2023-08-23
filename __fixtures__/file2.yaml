@@ -1,5 +1,5 @@
 name: second
-format: yml
-weigth: 100
+file: identifical
+weigth: 50
+main: bin
 test: true
-host: user
