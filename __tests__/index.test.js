@@ -19,8 +19,12 @@ test('gendiff', () => {
 
   const file1_yaml = getFixturePath('file1.yaml');
   const file2_yaml = getFixturePath('file2.yaml');
+  const file1_yml = getFixturePath('file1.yml');
+  const file2_yml = getFixturePath('file2.yml');
   const result_yaml = readFile('expected_yaml.txt');
   expect(gendiff(file1_json, file2_json)).toEqual(result_json);
   expect(gendiff(file1_yaml, file2_yaml)).toEqual(result_yaml);
+  expect(gendiff(file1_yml, file2_yml)).toEqual(result_yaml);
+
   expect(gendiff(file1_json, errorFile)).toEqual('Unknown format! txt');
 });

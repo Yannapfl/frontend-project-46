@@ -1,0 +1,5 @@
+name: second
+format: yml
+weigth: 100
+test: true
+host: user
