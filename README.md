@@ -3,6 +3,8 @@
 
 <a href="https://codeclimate.com/github/Yannapfl/frontend-project-46/maintainability"><img src="https://api.codeclimate.com/v1/badges/139a07af565c32f375a0/maintainability" /></a>
 
+<a href="https://codeclimate.com/github/Yannapfl/frontend-project-46/test_coverage"><img src="https://api.codeclimate.com/v1/badges/139a07af565c32f375a0/test_coverage" /></a>
+
 ### Github Action status:
 [![Action Status](https://github.com/Yannapfl/frontend-project-46/actions/workflows/nodejs.yml/badge.svg)](https://github.com/Yannapfl/frontend-project-46/actions)
 
