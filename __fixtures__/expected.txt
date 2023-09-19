@@ -1,9 +1,0 @@
-  file: identifical
-+ main: bin
-- name: first
-+ name: second
-- proxy: 123.1234
-+ test: true
-- timeout: 50
-- version: 1
-+ weigth: 50

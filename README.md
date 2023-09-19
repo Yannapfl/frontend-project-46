@@ -25,4 +25,7 @@
 <a href="https://asciinema.org/a/rrQPj5UqsLB9RZBIsSKtUfSw0" target="_blank"><img src="https://asciinema.org/a/rrQPj5UqsLB9RZBIsSKtUfSw0.svg" /></a>
 
 <h4>JSON vs YML<h4>
-<a href="https://asciinema.org/a/jDlILmgXl2e3w5uhNWRYiFF1v" target="_blank"><img src="https://asciinema.org/a/jDlILmgXl2e3w5uhNWRYiFF1v.svg" /></a>
+<a href="https://asciinema.org/a/zLokHiy2gyty2oV61CdJ0W7TU" target="_blank"><img src="https://asciinema.org/a/zLokHiy2gyty2oV61CdJ0W7TU.svg" /></a>
+
+<h4>Stylish format<h4>
+<a href="https://asciinema.org/a/HbEoDnDEn7dF5F9LjlSXdAtC8" target="_blank"><img src="https://asciinema.org/a/HbEoDnDEn7dF5F9LjlSXdAtC8.svg" /></a>
