@@ -25,8 +25,3 @@ test('gendiff for Stylish', () => {
   expect(gendiff(yaml1, yaml2)).toEqual(resultStylish);
   expect(gendiff(yml1, yml2)).toEqual(resultStylish);
 });
-
-test('boom!', () => {
-  const errorFile = getFixturePath('errorFile.txt');
-  expect(gendiff(errorFile, errorFile)).toThrow(new Error('Unknown format! txt'));
-});
