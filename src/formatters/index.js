@@ -7,6 +7,8 @@ const formatting = (data, format) => {
       return `{\n${getStylish(data)}\n}`;
     case 'plain':
       return getPlain(data);
+    case 'json':
+      return JSON.stringify(data);
     default:
       throw new Error(`Unknown ${format}.`);
   }

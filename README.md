@@ -32,3 +32,6 @@
 
 <h4>Plain format</h4>
 <a href="https://asciinema.org/a/X3GVkXpmUTIjTM2nK6vTpyJGx" target="_blank"><img src="https://asciinema.org/a/X3GVkXpmUTIjTM2nK6vTpyJGx.svg" /></a>
+
+<h4>JSON format</h4>
+<a href="https://asciinema.org/a/bKirdS9TmZJxq7GDkBbkLa2p8" target="_blank"><img src="https://asciinema.org/a/bKirdS9TmZJxq7GDkBbkLa2p8.svg" /></a>
