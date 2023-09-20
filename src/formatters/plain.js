@@ -6,18 +6,19 @@ const filterEqual = (data) => {
 };
 
 const makeStatusUpdate = (data, iter = '') => {
+  let iter1 = iter;
   const changeStatus = data.map((item) => {
-    if (_.has(item, 'plain')) {
-      if ((item.status === '-')) {
-        item.status = 'delete';
-        item.plain = false;
-        iter = item.value;
-        return item;
+    const item1 = item;
+    if (_.has(item1, 'plain')) {
+      if ((item1.status === '-')) {
+        item1.plain = false;
+        iter1 = item1.value;
+        return item1;
       }
-      item.status = 'updated';
-      item.object = { value1: iter, value2: item.value };
-      delete item.plain;
-      iter = '';
+      item1.status = 'updated';
+      item1.object = { value1: iter1, value2: item1.value };
+      delete item1.plain;
+      iter1 = '';
     }
     return item;
   });
@@ -38,20 +39,21 @@ const formatingValue = (value) => {
 };
 
 const getPlain = (arr, path = '') => {
+  let path1 = path;
   const arrWithoutEqual = filterEqual(arr);
   const arrForPlain = makeStatusUpdate(arrWithoutEqual);
   const filteredArr = arrForPlain.filter((item) => !_.has(item, 'plain'));
   const newArr = filteredArr.map((item) => {
     if (item.status === 'nested') {
       const firstPath = path;
-      path += `${item.key}.`;
-      const line = getPlain(item.children, path);
-      path = firstPath;
+      path1 += `${item.key}.`;
+      const line = getPlain(item.children, path1);
+      path1 = firstPath;
       return line;
     }
     if (item.status === '+') {
       const value = formatingValue(item.value);
-      return `Property '${path}${item.key}' was added with value: ${value}`;
+      return `Property '${path1}${item.key}' was added with value: ${value}`;
     }
     if (item.status === 'updated') {
       const value1 = formatingValue(item.object.value1);

@@ -15,27 +15,28 @@ const getObjForStylish = (obj) => {
 };
 
 const getStylish = (arr, depth = 0) => {
+  let depth1 = depth;
   const newArr = arr.map((item) => {
     if (item.status === 'nested') {
       const firstDepth = depth;
-      depth += 1;
-      const line = `${' '.repeat(defendSpace + firstDepth * countOpeningSpace)}  ${item.key}: {\n${getStylish(item.children, depth)}\n${' '.repeat(depth * countOpeningSpace)}}`;
-      depth = firstDepth;
+      depth1 += 1;
+      const line = `${' '.repeat(defendSpace + firstDepth * countOpeningSpace)}  ${item.key}: {\n${getStylish(item.children, depth1)}\n${' '.repeat(depth1 * countOpeningSpace)}}`;
+      depth1 = firstDepth;
       return line;
     }
     if (item.status === 'equal') {
-      return `${' '.repeat(defendSpace + depth * countOpeningSpace)}  ${item.key}: ${item.value}`;
+      return `${' '.repeat(defendSpace + depth1 * countOpeningSpace)}  ${item.key}: ${item.value}`;
     }
 
     if (_.isObject(item.value)) {
-      const firstDepth = depth;
-      depth += 1;
+      const firstDepth = depth1;
+      depth1 += 1;
       const children = getObjForStylish(item.value);
-      const textObject = `${' '.repeat(defendSpace + firstDepth * countOpeningSpace)}${item.status} ${item.key}: {\n${getStylish(children, depth)}\n${' '.repeat(depth * countOpeningSpace)}}`;
-      depth = firstDepth;
+      const textObject = `${' '.repeat(defendSpace + firstDepth * countOpeningSpace)}${item.status} ${item.key}: {\n${getStylish(children, depth1)}\n${' '.repeat(depth1 * countOpeningSpace)}}`;
+      depth1 = firstDepth;
       return textObject;
     }
-    return `${' '.repeat(defendSpace + depth * countOpeningSpace)}${item.status} ${item.key}: ${item.value}`;
+    return `${' '.repeat(defendSpace + depth1 * countOpeningSpace)}${item.status} ${item.key}: ${item.value}`;
   });
   const text = newArr.join('\n');
   return text;
