@@ -1,12 +1,12 @@
 import _ from 'lodash';
 
-const filterEqual = (arr) => {
-  const result = arr.filter((item) => item.status !== 'equal');
+const filterEqual = (data) => {
+  const result = data.filter((item) => item.status !== 'equal');
   return result;
 };
 
-const makeStatusUpdate = (arr, iter = '') => {
-  const changeStatus = arr.map((item) => {
+const makeStatusUpdate = (data, iter = '') => {
+  const changeStatus = data.map((item) => {
     if (_.has(item, 'plain')) {
       if ((item.status === '-')) {
         item.status = 'delete';
