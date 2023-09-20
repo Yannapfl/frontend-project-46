@@ -17,14 +17,20 @@ const comparing = (file1, file2) => {
       return { status: 'equal', key, value: file1[key] };
     }
     if (_.has(file1, key) && _.has(file2, key)) {
-      return [{ status: '-', key, value: file1[key] }, { status: '+', key, value: file2[key] }];
+      return [
+        {
+          status: '-', key, value: file1[key], plain: 'updated',
+        },
+        {
+          status: '+', key, value: file2[key], plain: 'updated',
+        },
+      ];
     }
     if (_.has(file1, key) && !_.has(file2, key)) {
       return { status: '-', key, value: file1[key] };
     }
     return { status: '+', key, value: file2[key] };
   });
-
   return comparisons.flat(1);
 };
 
