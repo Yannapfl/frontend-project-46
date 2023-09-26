@@ -4,7 +4,7 @@ import getPlain from './plain.js';
 const formatting = (data, format) => {
   switch (format) {
     case 'stylish':
-      return `{\n${getStylish(data)}\n}`;
+      return getStylish(data);
     case 'plain':
       return getPlain(data);
     case 'json':

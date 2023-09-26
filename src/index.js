@@ -12,9 +12,9 @@ const getFormat = (filepath) => path.extname(filepath).slice(1);
 const parseFile = (filepath) => parser(readFile(filepath), getFormat(filepath));
 
 const genDiff = (filepath1, filepath2, format = 'stylish') => {
-  const file1 = parseFile(filepath1);
-  const file2 = parseFile(filepath2);
-  const data = comparing(file1, file2);
+  const content1 = parseFile(filepath1);
+  const content2 = parseFile(filepath2);
+  const data = comparing(content1, content2);
   return formatting(data, format);
 };
 

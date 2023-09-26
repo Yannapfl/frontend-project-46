@@ -1,37 +1,25 @@
 import _ from 'lodash';
 
-const getKeys = (obj1, obj2) => {
-  const keys1 = Object.keys(obj1);
-  const keys2 = Object.keys(obj2);
-  const unionKeys = _.union(keys1, keys2);
-  const sortedKeys = _.sortBy(unionKeys);
-  return sortedKeys;
-};
-const comparing = (file1, file2) => {
-  const keys = getKeys(file1, file2);
+const comparing = (data1, data2) => {
+  const keys = _.sortBy(_.union(Object.keys(data1), Object.keys(data2)));
   const comparisons = keys.map((key) => {
-    if (_.isObject(file1[key]) && _.isObject(file2[key])) {
-      return { status: 'nested', key, children: comparing(file1[key], file2[key]) };
+    if (_.isObject(data1[key]) && _.isObject(data2[key])) {
+      return { type: 'nested', key, children: comparing(data1[key], data2[key]) };
     }
-    if (_.isEqual(file1[key], file2[key])) {
-      return { status: 'equal', key, value: file1[key] };
+    if (_.isEqual(data1[key], data2[key])) {
+      return { type: 'equal', key, value: data1[key] };
     }
-    if (_.has(file1, key) && _.has(file2, key)) {
-      return [
-        {
-          status: '-', key, value: file1[key], plain: 'updated',
-        },
-        {
-          status: '+', key, value: file2[key], plain: 'updated',
-        },
-      ];
+    if (_.has(data1, key) && _.has(data2, key)) {
+      return {
+        type: 'updated', key, value1: data1[key], value2: data2[key],
+      };
     }
-    if (_.has(file1, key) && !_.has(file2, key)) {
-      return { status: '-', key, value: file1[key] };
+    if (_.has(data1, key) && !_.has(data2, key)) {
+      return { type: 'deleted', key, value: data1[key] };
     }
-    return { status: '+', key, value: file2[key] };
+    return { type: 'added', key, value: data2[key] };
   });
-  return comparisons.flat(1);
+  return comparisons;
 };
 
 export default comparing;
