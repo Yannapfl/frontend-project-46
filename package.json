@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "type": "module",
-  "main": "src/function.js",
+  "main": "src/index.js",
   "bin": {
     "gendiff": "bin/gendiff.js"
   },
@@ -21,7 +21,6 @@
   },
   "homepage": "https://github.com/Yannapfl/frontend-project-46#readme",
   "dependencies": {
-    "@jest/globals": "^29.6.3",
     "commander": "^11.0.0",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21"
