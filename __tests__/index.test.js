@@ -13,13 +13,10 @@ const readFile = (filepath) => readFileSync(getFixturePath(filepath), 'utf-8');
 const files = [['file1.json', 'file2.json'], ['file1.yml', 'file2.yaml']];
 
 test.each(files)('gendiff', (file1, file2) => {
-  const filepath1 = getFixturePath(file1);
-  const filepath2 = getFixturePath(file2);
-  const resultStylish = readFile('expectedStylish.txt');
-  expect(gendiff(filepath1, filepath2)).toEqual(resultStylish);
-  expect(gendiff(filepath1, filepath2, 'stylish')).toEqual(resultStylish);
-  expect(gendiff(filepath1, filepath2, 'plain')).toEqual(readFile('expectedPlain.txt'));
-  expect(gendiff(filepath1, filepath2, 'json')).toEqual(readFile('expectedJSON.txt'));
+  expect(gendiff(getFixturePath(file1), getFixturePath(file2))).toEqual(readFile('expectedStylish.txt'));
+  expect(gendiff(getFixturePath(file1), getFixturePath(file2), 'stylish')).toEqual(readFile('expectedStylish.txt'));
+  expect(gendiff(getFixturePath(file1), getFixturePath(file2), 'plain')).toEqual(readFile('expectedPlain.txt'));
+  expect(gendiff(getFixturePath(file1), getFixturePath(file2), 'json')).toEqual(readFile('expectedJSON.txt'));
 });
 
 test.failing('boom!', () => {
