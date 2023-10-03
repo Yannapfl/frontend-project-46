@@ -2,57 +2,39 @@ import _ from 'lodash';
 
 const countOpeningSpace = 4;
 const defendSpace = 2;
-
-const setObjForStylish = (content) => {
-  const keys = Object.keys(content);
-  const result = keys.map((key) => {
-    if (_.isObject(content[key])) {
-      return { type: 'nested', key, children: setObjForStylish(content[key]) };
-    }
-    return { type: 'equal', key, value: content[key] };
-  });
-  return result;
-};
+const countInitialSpaces = (depth) => defendSpace + depth * countOpeningSpace;
+const countClosingSpaces = (depth) => depth * countOpeningSpace;
 
 const checkObject = (value, depth) => {
-  let depth1 = depth;
   if (_.isObject(value)) {
-    depth1 += 1;
-    const children = setObjForStylish(value);
-    const textObject = `{\n${stringify(children, depth1)}\n${' '.repeat(depth1 * countOpeningSpace)}}`;
-    depth1 = depth;
-    return textObject;
+    const keys = Object.keys(value);
+    const stringifyObject = keys.map((key) => `${' '.repeat(countInitialSpaces(depth + 1))}  ${key}: ${checkObject(value[key], depth + 1)}`);
+    return `{\n${stringifyObject.join('\n')}\n${' '.repeat(countClosingSpaces(depth + 1))}}`;
   }
   return value;
 };
 
-const stringify = (data, depth = 0) => {
-  let depth1 = depth;
-  const newArr = data.map((item) => {
-    if (item.type === 'nested') {
-      const firstDepth = depth;
-      depth1 += 1;
-      const line = `${' '.repeat(defendSpace + firstDepth * countOpeningSpace)}  ${item.key}: {\n${stringify(item.children, depth1)}\n${' '.repeat(depth1 * countOpeningSpace)}}`;
-      depth1 = firstDepth;
-      return line;
-    }
+const stylish = (data, depth = 0) => {
+  const stringifyData = data.map((item) => {
     switch (item.type) {
+      case 'nested':
+        return `${' '.repeat(countInitialSpaces(depth))}  ${item.key}: {\n${stylish(item.children, depth + 1)}\n${' '.repeat(countClosingSpaces(depth + 1))}}`;
       case 'equal':
-        return `${' '.repeat(defendSpace + depth1 * countOpeningSpace)}  ${item.key}: ${checkObject(item.value, depth1)}`;
+        return `${' '.repeat(countInitialSpaces(depth))}  ${item.key}: ${checkObject(item.value, depth)}`;
       case 'added':
-        return `${' '.repeat(defendSpace + depth1 * countOpeningSpace)}+ ${item.key}: ${checkObject(item.value, depth1)}`;
+        return `${' '.repeat(countInitialSpaces(depth))}+ ${item.key}: ${checkObject(item.value, depth)}`;
       case 'deleted':
-        return `${' '.repeat(defendSpace + depth1 * countOpeningSpace)}- ${item.key}: ${checkObject(item.value, depth1)}`;
+        return `${' '.repeat(countInitialSpaces(depth))}- ${item.key}: ${checkObject(item.value, depth)}`;
       case 'updated':
-        return `${' '.repeat(defendSpace + depth1 * countOpeningSpace)}- ${item.key}: ${checkObject(item.value1, depth1)}\n${' '.repeat(defendSpace + depth1 * countOpeningSpace)}+ ${item.key}: ${checkObject(item.value2, depth1)}`;
+        return `${' '.repeat(countInitialSpaces(depth))}- ${item.key}: ${checkObject(item.value1, depth)}\n${' '.repeat(countInitialSpaces(depth))}+ ${item.key}: ${checkObject(item.value2, depth)}`;
       default:
         throw new Error(`'Unknown ${item.type}'`);
     }
   });
-  const text = newArr.join('\n');
+  const text = stringifyData.join('\n');
   return text;
 };
 
-const getStylish = (data) => `{\n${stringify(data)}\n}`;
+const getStylish = (data) => `{\n${stylish(data)}\n}`;
 
 export default getStylish;

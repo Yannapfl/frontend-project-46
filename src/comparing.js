@@ -1,11 +1,11 @@
 import _ from 'lodash';
 
-const comparing = (data1, data2) => {
+const compare = (data1, data2) => {
   const unionKeys = _.union(Object.keys(data1), Object.keys(data2));
   const keys = _.sortBy(unionKeys);
   const comparisons = keys.map((key) => {
     if (_.isObject(data1[key]) && _.isObject(data2[key])) {
-      return { type: 'nested', key, children: comparing(data1[key], data2[key]) };
+      return { type: 'nested', key, children: compare(data1[key], data2[key]) };
     }
     if (_.isEqual(data1[key], data2[key])) {
       return { type: 'equal', key, value: data1[key] };
@@ -23,4 +23,4 @@ const comparing = (data1, data2) => {
   return comparisons;
 };
 
-export default comparing;
+export default compare;

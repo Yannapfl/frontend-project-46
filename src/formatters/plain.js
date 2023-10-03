@@ -12,17 +12,13 @@ const stringify = (value) => {
 };
 
 const getPlain = (arr, path = '') => {
-  let path1 = path;
-  const filteredArr = arr.filter((item) => item.type !== 'equal');
-  const newArr = filteredArr.map((item) => {
-    if (item.type === 'nested') {
-      const firstPath = path;
-      path1 += `${item.key}.`;
-      const line = getPlain(item.children, path1);
-      path1 = firstPath;
-      return line;
-    }
+  const path1 = path;
+  const plainedArr = arr.map((item) => {
     switch (item.type) {
+      case 'nested':
+        return getPlain(item.children, (`${path}${item.key}.`));
+      case 'equal':
+        return '';
       case 'added':
         return `Property '${path1}${item.key}' was added with value: ${stringify(item.value)}`;
       case 'deleted':
@@ -33,7 +29,8 @@ const getPlain = (arr, path = '') => {
         throw new Error(`Unknown ${item.type}.`);
     }
   });
-  const text = newArr.join('\n');
+  const filteredArr = plainedArr.filter((item) => item !== '');
+  const text = filteredArr.join('\n');
   return text;
 };
 
