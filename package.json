@@ -6,7 +6,7 @@
   "bin": {
     "gendiff": "bin/gendiff.js"
   },
-  "description": "Difference Calculator - a programme that determines the difference between two data structures.[![Actions Status](https://github.com/Yannapfl/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/Yannapfl/frontend-project-46/actions",
+  "description": "Difference Calculator - a programme that determines the difference between two data structures.",
   "scripts": {
     "test": "NODE_OPTIONS=--experimental-vm-modules npx jest  --coverage"
   },
@@ -22,7 +22,6 @@
   "homepage": "https://github.com/Yannapfl/frontend-project-46#readme",
   "dependencies": {
     "commander": "^11.0.0",
-    "eslint-plugin-jest": "^27.4.2",
     "js-yaml": "^4.1.0",
     "lodash": "^4.17.21"
   },

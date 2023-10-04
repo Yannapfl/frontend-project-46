@@ -18,7 +18,7 @@ const getPlain = (arr, path = '') => {
       case 'nested':
         return getPlain(item.children, (`${path}${item.key}.`));
       case 'equal':
-        return '';
+        return null;
       case 'added':
         return `Property '${path1}${item.key}' was added with value: ${stringify(item.value)}`;
       case 'deleted':
@@ -29,7 +29,7 @@ const getPlain = (arr, path = '') => {
         throw new Error(`Unknown ${item.type}.`);
     }
   });
-  const filteredArr = plainedArr.filter((item) => item !== '');
+  const filteredArr = plainedArr.filter((item) => item !== null);
   const text = filteredArr.join('\n');
   return text;
 };

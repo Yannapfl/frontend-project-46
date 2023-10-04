@@ -16,10 +16,10 @@ test.each([
     filePath1: 'file1.yml', filePath2: 'file2.yaml', result: 'expectedStylish.txt', format: 'stylish',
   },
   {
-    filePath1: 'file1.json', filePath2: 'file2.json', result: 'expectedPlain.txt', format: 'plain',
+    filePath1: 'file1.yml', filePath2: 'file2.json', result: 'expectedPlain.txt', format: 'plain',
   },
   {
-    filePath1: 'file1.yml', filePath2: 'file2.yaml', result: 'expectedJSON.txt', format: 'json',
+    filePath1: 'file1.json', filePath2: 'file2.yaml', result: 'expectedJSON.txt', format: 'json',
   },
 ])('gendiff', ({
   filePath1, filePath2, result, format,
